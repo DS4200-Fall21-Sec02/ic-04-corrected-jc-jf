@@ -20,3 +20,12 @@ let svg1 = d3.select('#d3-container')
   .style('border', 'solid')
   .attr('viewBox', [0, 0, width + margin.left + margin.right, height + margin.top + margin.bottom].join(' '))
 
+d3.csv("data/data.csv").then(function(data){
+
+var xScale = d3.scaleBand()
+  .range ([0, width])
+  .domain (data.map(d => d.X));
+svg1.append("g")
+  .attr("transform", 'translate(0, ' + height +')')
+  .call(d3.axisBottom(xScale));
+}) 
